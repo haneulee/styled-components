@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, { injectGlobal } from "styled-components";
+import styled, { injectGlobal, keyframes } from "styled-components";
 
 injectGlobal`
   body{
@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Container>
         <Button>Hello</Button>
-        <Button danger>Hello</Button>
+        <Button danger rotationTime={5}>Hello</Button>
         <Anchor href="http://google.com">Go to google</Anchor>
       </Container>
     );
@@ -39,11 +39,25 @@ const Button = styled.button`
     outline: none;
   }
   background-color: ${props => (props.danger ? "#e74c3c" : "#2ecc71")};
+  ${props => {
+    if (props.danger) {
+      return `animation: ${rotate} ${props.rotationTime}s linear infinite`
+    }
+  }}
 `;
 
 //Button 컴포넌트를 똑같은 css를 적용하면서 다른 태그로 변경할 수도 있음
 const Anchor = Button.withComponent("a").extend`
   text-decoration:none;
 `;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+`
 
 export default App;
