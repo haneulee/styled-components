@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import styled, { injectGlobal, keyframes, css } from "styled-components";
+import styled, { injectGlobal, keyframes, css, ThemeProvider } from "styled-components";
+import theme from "./theme";
 
 injectGlobal`
   body{
@@ -25,20 +26,36 @@ const Input = styled.input.attrs({
 class App extends Component {
   render() {
     return (
-      <Container>
-        {/* <Button>Hello</Button>
-        <Button danger rotationTime={5}>Hello</Button>
-        <Anchor href="http://google.com">Go to google</Anchor> */}
-        <Input placeholder={"hello"}/>
-      </Container>
+      <ThemeProvider theme={theme}>
+        <Container>
+          {/* <Button>Hello</Button>
+          <Button danger rotationTime={5}>Hello</Button>
+          <Anchor href="http://google.com">Go to google</Anchor>
+          <Input placeholder="hello"/> */}
+          <Form/>
+        </Container>
+      </ThemeProvider>
     );
   }
 }
+
+const Form = () => (
+  <Card>
+    <Button>Hello</Button>
+  </Card>
+)
+
+const Card = styled.div`
+  background-color: ${props => props.theme.dangerColor};
+`;
 
 const Container = styled.div`
   height: 100vh;
   width: 100%;
   background-color: pink;
+  ${Card} {
+    background-color: blue;
+  }
 `;
 
 const Button = styled.button`

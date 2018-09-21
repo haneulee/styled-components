@@ -5,3 +5,5 @@
 3. withComponent로 다른 태그 변경
 4. animation keyframes
 5. css group
+6. theme 적용
+7. nesting
