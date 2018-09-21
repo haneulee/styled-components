@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, { injectGlobal, keyframes } from "styled-components";
+import styled, { injectGlobal, keyframes, css } from "styled-components";
 
 injectGlobal`
   body{
@@ -8,13 +8,28 @@ injectGlobal`
   }
 `;
 
+const awesomeCard = css`
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0,0,0,0.88);
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+`
+
+const Input = styled.input.attrs({
+  required: true
+})`
+  border: none;
+  ${awesomeCard}
+`;
+
 class App extends Component {
   render() {
     return (
       <Container>
-        <Button>Hello</Button>
+        {/* <Button>Hello</Button>
         <Button danger rotationTime={5}>Hello</Button>
-        <Anchor href="http://google.com">Go to google</Anchor>
+        <Anchor href="http://google.com">Go to google</Anchor> */}
+        <Input placeholder={"hello"}/>
       </Container>
     );
   }
